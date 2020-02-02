@@ -22,9 +22,11 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item v-for="server in json.Servers" :key="server.name" link>
+      <v-list-item v-for="server in json.Servers" :key="server.Name" link>
         <v-list-item-icon>
-          <v-icon>mdi-desktop-classic</v-icon>
+          <v-badge :overlap="drawer" dot color="green">
+            <v-icon>mdi-desktop-classic</v-icon>
+          </v-badge>
         </v-list-item-icon>
 
         <v-list-item-content>
@@ -32,7 +34,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item to="/create" link>
+      <v-list-item to="/CreateServer" link>
         <v-list-item-icon>
           <v-icon>mdi-plus-circle-outline</v-icon>
         </v-list-item-icon>
