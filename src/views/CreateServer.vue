@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-form>
+    <v-form @submit.prevent="CreateServer" v-model="valid" ref="form">
       <v-container>
         <v-row>
           <v-card-title>
@@ -228,7 +228,7 @@
           prepend-inner-icon="mdi-gamepad-square-outline"
           label="Operator Permission Level"
           :items="PermissionLevels"
-          value="4"
+          v-model="model.properties.PermissionLevel"
         />
         <v-combobox
           prepend-inner-icon="mdi-code-braces"
@@ -343,8 +343,14 @@
           @unit-input="OnXmsUnitInput"
         />
         <v-card-actions>
-          <v-btn color="green" style="color:#fff">Create</v-btn>
-          <v-btn text color="red">Cancel</v-btn>
+          <v-btn
+            :disabled="!valid"
+            color="success"
+            type="submit"
+            @click="validate"
+            >Create</v-btn
+          >
+          <v-btn text color="error">Cancel</v-btn>
         </v-card-actions>
       </v-container>
     </v-form>
@@ -354,12 +360,63 @@
 <script>
 import GameVersions from "../game-versions.json";
 import MemoryInput from "../components/MemoryInput";
+import axios from "axios";
 
 export default {
   components: {
     MemoryInput
   },
   methods: {
+    validate() {
+      this.$refs.form.validate();
+    },
+    async CreateServer() {
+      if (this.$refs.form.validate()) {
+        let payload = {
+          "Name": this.model.main.ServerName,
+          "GameVersion": this.model.main.GameVersion,
+          "ServerURL": "https://launcher.mojang.com/v1/objects/3dc3d84a581f14691199cf6831b71ed1296a9fdf/server.jar",
+          "OutputFile": "output.stream.log",
+          "VMProperties": {
+            "Xmx": `${this.model.JVMSettings.XmxMemory}${this.model.JVMSettings.XmxUnit}`,
+            "Xms": `${this.model.JVMSettings.XmsMemory}${this.model.JVMSettings.XmsUnit}`,
+            "jar": "true",
+            "nogui": "true"
+          },
+          "Properties":{
+            "op-permission-level": this.model.properties.PermissionLevel,
+            "allow-nether": this.model.properties.AllowNether,
+            "level-name": this.model.properties.WorldName,
+            "enable-query": this.model.properties.EnableQuery,
+            "allow-flight": this.model.properties.AllowFlight,
+            "announce-player-achievements": "true",
+            "server-port": this.model.main.ServerPort,
+            "enable-rcon": this.model.properties.RCONEnabled,
+            "force-gamemode": this.model.properties.ForceGamemode,
+            "max-build-height": this.model.properties.MaxBuildHeight,
+            "spawn-npcs": this.model.properties.SpawnNPC,
+            "white-list": this.model.properties.Whitelist,
+            "spawn-animals": this.model.properties.SpawnAnimals,
+            "hardcore": this.model.properties.Hardcore,
+            "snooper-enabled": this.model.properties.SnooperEnabled,
+            "online-mode": this.model.properties.OnlineMode,
+            "pvp": this.model.properties.PVP,
+            "difficulty": this.model.properties.Difficulty,
+            "enable-command-block": this.model.properties.EnableCommandBlock,
+            "gamemode": this.model.properties.Gamemode,
+            "player-idle-timeout": this.model.properties.PlayerIdleTime,
+            "max-players": this.model.properties.MaxPlayers,
+            "spawn-monsters": this.model.properties.SpawnMonsters,
+            "generate-structures": this.model.properties.GenerateStructures,
+            "view-distance": this.model.properties.ViewDistance,
+            "spawn-protection": this.model.properties.SpawnProtection,
+            "motd": this.model.properties.MOTD
+          }
+        };
+        console.log(payload);
+        axios.post();
+      }
+    },
     OnXmxMemoryInput(data) {
       this.model.JVMSettings.XmxMemory = data;
     },
@@ -375,6 +432,7 @@ export default {
   },
   data() {
     return {
+      valid: true,
       GameVersions: GameVersions.versions.map(item => {
         return item.id;
       }),
@@ -439,7 +497,8 @@ export default {
           QueryPort: 25565,
           RCONEnabled: false,
           RCONPort: 25575,
-          RCONPassword: ""
+          RCONPassword: "",
+          PermissionLevel: 4
         }
       },
       PasswordVisible: false,
