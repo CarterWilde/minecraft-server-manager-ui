@@ -332,8 +332,16 @@
         <v-row>
           <v-card-title>JVM Settings</v-card-title>
         </v-row>
-        <MemoryInput type="Xmx" />
-        <MemoryInput type="Xms" />
+        <MemoryInput
+          type="Xmx"
+          v-on:memory-input="OnXmxMemoryInput"
+          v-on:unit-input="OnXmxUnitInput"
+        />
+        <MemoryInput
+          type="Xms"
+          v-on:memory-input="OnXmsMemoryInput"
+          v-on:unit-input="OnXmsUnitInput"
+        />
         <v-card-actions>
           <v-btn color="green" style="color:#fff">Create</v-btn>
           <v-btn text color="red">Cancel</v-btn>
@@ -350,6 +358,20 @@ import MemoryInput from "../components/MemoryInput";
 export default {
   components: {
     MemoryInput
+  },
+  methods: {
+    OnXmxMemoryInput(data) {
+      this.model.JVMSettings.XmxMemory = data;
+    },
+    OnXmxUnitInput(data) {
+      this.model.JVMSettings.XmxUnit = data;
+    },
+    OnXmsMemoryInput(data) {
+      this.model.JVMSettings.XmsMemory = data;
+    },
+    OnXmsUnitInput(data) {
+      this.model.JVMSettings.XmsUnit = data;
+    }
   },
   data() {
     return {
@@ -374,6 +396,12 @@ export default {
           GameVersion: "",
           IPAddress: "*",
           ServerPort: "25565"
+        },
+        JVMSettings: {
+          XmxMemory: 2048,
+          XmxUnit: "M",
+          XmsMemory: 2048,
+          XmsUnit: "M"
         },
         properties: {
           WorldName: "",
