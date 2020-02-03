@@ -334,13 +334,13 @@
         </v-row>
         <MemoryInput
           type="Xmx"
-          v-on:memory-input="OnXmxMemoryInput"
-          v-on:unit-input="OnXmxUnitInput"
+          @memory-input="OnXmxMemoryInput"
+          @unit-input="OnXmxUnitInput"
         />
         <MemoryInput
           type="Xms"
-          v-on:memory-input="OnXmsMemoryInput"
-          v-on:unit-input="OnXmsUnitInput"
+          @memory-input="OnXmsMemoryInput"
+          @unit-input="OnXmsUnitInput"
         />
         <v-card-actions>
           <v-btn color="green" style="color:#fff">Create</v-btn>
