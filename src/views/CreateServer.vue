@@ -44,12 +44,10 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-card-title>JVM Settings</v-card-title>
-        </v-row>
-        <MemoryInput type="Xmx" />
-        <MemoryInput type="Xms" />
-        <v-row>
-          <v-card-title>Properties</v-card-title>
+          <v-card-title>
+            <v-icon>mdi-settings-outline</v-icon>
+            Properties
+          </v-card-title>
         </v-row>
         <v-text-field
           prepend-inner-icon="mdi-earth"
@@ -167,7 +165,7 @@
               label="PVP"
               prepend-icon="mdi-sword-cross"
               v-model="PVP"
-            s/>
+            />
           </v-col>
           <v-col>
             <v-switch
@@ -215,7 +213,10 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-card-title>Advanced Settings</v-card-title>
+          <v-card-title>
+            <v-icon>mdi-database-settings</v-icon>
+            Advanced Settings
+          </v-card-title>
         </v-row>
         <v-combobox
           prepend-inner-icon="mdi-gamepad-square-outline"
@@ -241,36 +242,52 @@
           prepend-inner-icon="mdi-clock"
           value="60000"
         />
-        <v-switch
-          label="Prevent Proxy Connections"
-          prepend-icon="mdi-transit-connection"
-          v-model="PreventProxyConnections"
-        />
-        <v-switch
-          label="Online Mode"
-          prepend-icon="mdi-security-network"
-          v-model="OnlineMode"
-        />
-        <v-switch
-          label="Whitelist"
-          prepend-icon="mdi-account"
-          v-model="Whitelist"
-        />
-        <v-switch
-          label="Enforce Whitelist"
-          prepend-icon="mdi-shield-account"
-          v-model="EnforceWhitelist"
-        />
-        <v-switch
-          label="Snooper Enabled"
-          prepend-icon="mdi-leak"
-          v-model="SnooperEnabled"
-        />
-        <v-switch
-          label="Use Native Transport"
-          prepend-icon="mdi-lan"
-          v-model="UseNativeTransport"
-        />
+        <v-row>
+          <v-col>
+            <v-switch
+              label="Prevent Proxy Connections"
+              prepend-icon="mdi-transit-connection"
+              v-model="PreventProxyConnections"
+            />
+          </v-col>
+          <v-col>
+            <v-switch
+              label="Whitelist"
+              prepend-icon="mdi-account"
+              v-model="Whitelist"
+            />
+          </v-col>
+          <v-col>
+            <v-switch
+              label="Enforce Whitelist"
+              prepend-icon="mdi-shield-account"
+              v-model="EnforceWhitelist"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-switch
+              label="Online Mode"
+              prepend-icon="mdi-security-network"
+              v-model="OnlineMode"
+            />
+          </v-col>
+          <v-col>
+            <v-switch
+              label="Snooper Enabled"
+              prepend-icon="mdi-leak"
+              v-model="SnooperEnabled"
+            />
+          </v-col>
+          <v-col>
+            <v-switch
+              label="Use Native Transport"
+              prepend-icon="mdi-lan"
+              v-model="UseNativeTransport"
+            />
+          </v-col>
+        </v-row>
         <v-switch
           label="Enable Query"
           prepend-icon="mdi-access-point"
@@ -306,6 +323,11 @@
           label="RCON Password"
           v-model="RCONPassword"
         />
+        <v-row>
+          <v-card-title>JVM Settings</v-card-title>
+        </v-row>
+        <MemoryInput type="Xmx" />
+        <MemoryInput type="Xms" />
         <v-card-actions>
           <v-btn color="green" style="color:#fff">Create</v-btn>
           <v-btn text color="red">Cancel</v-btn>
