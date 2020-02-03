@@ -360,7 +360,20 @@
 <script>
 import GameVersions from "../game-versions.json";
 import MemoryInput from "../components/MemoryInput";
-import axios from "axios";
+// import axios from "axios";
+
+const findServerURL = async GameVersionID => {
+  let versionUrl = GameVersions.versions.find(item => item.id == GameVersionID).url;
+  versionUrl = `http://localhost:8010/proxy${versionUrl.split(`https://launchermeta.mojang.com`)[1]}`;
+  return await fetch(versionUrl, {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "*"
+    }
+  })
+  .then(data => data.json())
+  .then(data => data.downloads.server.url);
+}
 
 export default {
   components: {
@@ -371,50 +384,58 @@ export default {
       this.$refs.form.validate();
     },
     async CreateServer() {
+      let serverUrl = await findServerURL(this.model.main.GameVersion);
       if (this.$refs.form.validate()) {
         let payload = {
-          "Name": this.model.main.ServerName,
-          "GameVersion": this.model.main.GameVersion,
-          "ServerURL": "https://launcher.mojang.com/v1/objects/3dc3d84a581f14691199cf6831b71ed1296a9fdf/server.jar",
-          "OutputFile": "output.stream.log",
-          "VMProperties": {
-            "Xmx": `${this.model.JVMSettings.XmxMemory}${this.model.JVMSettings.XmxUnit}`,
-            "Xms": `${this.model.JVMSettings.XmsMemory}${this.model.JVMSettings.XmsUnit}`,
-            "jar": "true",
-            "nogui": "true"
+          Name: this.model.main.ServerName,
+          GameVersion: this.model.main.GameVersion,
+          ServerURL: serverUrl,
+          OutputFile: "output.stream.log",
+          VMProperties: {
+            Xmx: `${this.model.JVMSettings.XmxMemory}${this.model.JVMSettings.XmxUnit}`,
+            Xms: `${this.model.JVMSettings.XmsMemory}${this.model.JVMSettings.XmsUnit}`,
+            jar: "true",
+            nogui: "true"
           },
-          "Properties":{
-            "op-permission-level": this.model.properties.PermissionLevel,
-            "allow-nether": this.model.properties.AllowNether,
+          Properties: {
+            "op-permission-level": '"' + this.model.properties.PermissionLevel + '"',
+            "allow-nether": '"' + this.model.properties.AllowNether + '"',
             "level-name": this.model.properties.WorldName,
-            "enable-query": this.model.properties.EnableQuery,
-            "allow-flight": this.model.properties.AllowFlight,
+            "enable-query": '"' + this.model.properties.EnableQuery + '"',
+            "allow-flight": '"' + this.model.properties.AllowFlight + '"',
             "announce-player-achievements": "true",
             "server-port": this.model.main.ServerPort,
-            "enable-rcon": this.model.properties.RCONEnabled,
-            "force-gamemode": this.model.properties.ForceGamemode,
-            "max-build-height": this.model.properties.MaxBuildHeight,
-            "spawn-npcs": this.model.properties.SpawnNPC,
-            "white-list": this.model.properties.Whitelist,
-            "spawn-animals": this.model.properties.SpawnAnimals,
-            "hardcore": this.model.properties.Hardcore,
-            "snooper-enabled": this.model.properties.SnooperEnabled,
-            "online-mode": this.model.properties.OnlineMode,
-            "pvp": this.model.properties.PVP,
-            "difficulty": this.model.properties.Difficulty,
-            "enable-command-block": this.model.properties.EnableCommandBlock,
-            "gamemode": this.model.properties.Gamemode,
-            "player-idle-timeout": this.model.properties.PlayerIdleTime,
-            "max-players": this.model.properties.MaxPlayers,
-            "spawn-monsters": this.model.properties.SpawnMonsters,
-            "generate-structures": this.model.properties.GenerateStructures,
-            "view-distance": this.model.properties.ViewDistance,
-            "spawn-protection": this.model.properties.SpawnProtection,
-            "motd": this.model.properties.MOTD
+            "enable-rcon": '"' + this.model.properties.RCONEnabled + '"',
+            "force-gamemode": '"' + this.model.properties.ForceGamemode + '"',
+            "max-build-height": '"' + this.model.properties.MaxBuildHeight + '"',
+            "max-world-size": '"' + this.model.properties.MaxWorldSize + '"',
+            "spawn-npcs": '"' + this.model.properties.SpawnNPC + '"',
+            "white-list": '"' + this.model.properties.Whitelist + '"',
+            "spawn-animals": '"' + this.model.properties.SpawnAnimals + '"',
+            hardcore: '"' + this.model.properties.Hardcore + '"',
+            "snooper-enabled": '"' + this.model.properties.SnooperEnabled + '"',
+            "online-mode": '"' + this.model.properties.OnlineMode + '"',
+            pvp: '"' + this.model.properties.PVP + '"',
+            difficulty: this.model.properties.Difficulty.toLowerCase(),
+            "enable-command-block": '"' + this.model.properties.EnableCommandBlock + '"',
+            gamemode: this.model.properties.Gamemode.toLowerCase(),
+            "player-idle-timeout": '"' + this.model.properties.PlayerIdleTime + '"',
+            "max-players": '"' + this.model.properties.MaxPlayers + '"',
+            "spawn-monsters": '"' + this.model.properties.SpawnMonsters + '"',
+            "generate-structures": '"' + this.model.properties.GenerateStructures + '"',
+            "view-distance": '"' + this.model.properties.ViewDistance + '"',
+            "spawn-protection": '"' + this.model.properties.SpawnProtection + '"',
+            motd: this.model.properties.MOTD
           }
         };
-        console.log(payload);
-        axios.post();
+        await fetch(`${process.env.VUE_APP_API_URL}/CreateServer`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
       }
     },
     OnXmxMemoryInput(data) {

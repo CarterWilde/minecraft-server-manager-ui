@@ -1,5 +1,10 @@
 # minecraft-server-manager-ui
 
+## Start the proxy
+```
+lcp --proxyUrl https://launchermeta.mojang.com/
+```
+
 ## Project setup
 ```
 npm install

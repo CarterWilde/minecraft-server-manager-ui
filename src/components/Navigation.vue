@@ -22,7 +22,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item v-for="server in json.Servers" :key="server.Name" link>
+      <v-list-item v-for="server in Servers" :key="server.name" link>
         <v-list-item-icon>
           <v-badge :overlap="drawer" dot color="green">
             <v-icon>mdi-desktop-classic</v-icon>
@@ -30,7 +30,7 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>{{ server.Name }}</v-list-item-title>
+          <v-list-item-title>{{ server.name }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -48,14 +48,22 @@
 </template>
 
 <script>
-import jsonF from "../test-server-config.json";
+import axios from "axios";
 
 export default {
+  async created() {
+    let res = await axios.get(`${process.env.VUE_APP_API_URL}/Servers`);
+    this.Servers = res.data;
+    setInterval(async () => {
+      let res = await axios.get(`${process.env.VUE_APP_API_URL}/Servers`);
+      this.Servers = res.data;
+    }, 5000);
+  },
   data: () => ({
     expandOnHover: true,
     drawer: true,
     miniVariant: true,
-    json: jsonF
+    Servers: []
   })
 };
 </script>
