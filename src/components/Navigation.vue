@@ -6,7 +6,7 @@
     app
   >
     <v-list nav>
-      <v-list-item two-line :class="miniVariant && 'px-0'">
+      <v-list-item two-line :class="miniVariant && 'px-0'" link to="/">
         <v-list-item-avatar>
           <img
             src="https://www.gravatar.com/avatar/3428d1ed22dd56c4198fcacc46f64b0d"
@@ -22,9 +22,14 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item v-for="server in Servers" :key="server.name" link>
+      <v-list-item
+        v-for="server in Servers"
+        :key="server.name"
+        link
+        :to="`/Servers/${server.name}`"
+      >
         <v-list-item-icon>
-          <v-badge :overlap="drawer" dot color="green">
+          <v-badge overlap dot color="green">
             <v-icon>mdi-desktop-classic</v-icon>
           </v-badge>
         </v-list-item-icon>
@@ -34,7 +39,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item to="/CreateServer" link>
+      <v-list-item link to="/Servers/CreateServer">
         <v-list-item-icon>
           <v-icon>mdi-plus-circle-outline</v-icon>
         </v-list-item-icon>

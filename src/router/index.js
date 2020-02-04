@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import CreateServer from "../views/CreateServer.vue";
+import ViewServer from "../views/ViewServer.vue";
 
 Vue.use(VueRouter);
 
@@ -12,9 +13,14 @@ const routes = [
     component: Home
   },
   {
-    path: "/CreateServer",
+    path: "/Servers/CreateServer",
     name: "CreateServer",
     component: CreateServer
+  },
+  {
+    path: "/Servers/:name",
+    name: "ViewServer",
+    component: ViewServer
   }
 ];
 
