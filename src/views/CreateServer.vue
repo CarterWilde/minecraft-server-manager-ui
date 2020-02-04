@@ -45,303 +45,322 @@
             />
           </v-col>
         </v-row>
-        <v-row>
-          <v-card-title>
-            <v-icon>mdi-settings-outline</v-icon>
-            Properties
-          </v-card-title>
-        </v-row>
-        <v-text-field
-          prepend-inner-icon="mdi-earth"
-          label="World Name"
-          type="text"
-          v-model="model.properties.WorldName"
-        />
-        <v-combobox
-          prepend-inner-icon="mdi-gamepad-square-outline"
-          label="Gamemode"
-          :items="Gamemodes"
-          v-model="model.properties.Gamemode"
-        />
-        <v-combobox
-          prepend-inner-icon="mdi-one-up"
-          label="Difficulty"
-          :items="Difficulty"
-          v-model="model.properties.Difficulty"
-        />
-        <v-text-field
-          prepend-inner-icon="mdi-server-network"
-          label="Max Players"
-          type="number"
-          v-model="model.properties.MaxPlayers"
-        />
-        <v-text-field
-          prepend-inner-icon="mdi-matrix"
-          label="Level Seed"
-          type="number"
-          v-model="model.properties.LevelSeed"
-        />
-        <v-slider
-          label="View Distance"
-          prepend-icon="mdi-eye-outline"
-          min="3"
-          max="30"
-          step="1"
-          :tick-labels="ViewDistanceLables"
-          v-model="model.properties.ViewDistance"
-        />
-        <v-text-field
-          prepend-inner-icon="mdi-message-text-outline"
-          label="Message of the Day"
-          type="text"
-          v-model="model.properties.MOTD"
-        />
-        <v-combobox
-          prepend-inner-icon="mdi-format-list-bulleted-type"
-          label="Level Type"
-          :items="LevelTypes"
-          v-model="model.properties.LevelType"
-        />
-        <v-text-field
-          prepend-inner-icon="mdi-ruler"
-          label="Max Build Height"
-          type="number"
-          :rules="BuildHeightRules"
-          v-model="model.properties.MaxBuildHeight"
-        />
-        <v-text-field
-          prepend-inner-icon="mdi-ruler-square"
-          label="Max World Size"
-          type="number"
-          v-model="model.properties.MaxWorldSize"
-        />
-        <v-text-field
-          prepend-inner-icon="mdi-radius-outline"
-          label="Spawn Protection"
-          type="number"
-          v-model="model.properties.SpawnProtection"
-        />
-        <v-text-field
-          prepend-inner-icon="mdi-timer"
-          label="Player Idle Time"
-          type="number"
-          v-model="model.properties.PlayerIdleTime"
-        />
-        <v-text-field
-          prepend-inner-icon="mdi-package-variant-closed"
-          label="Resource Pack"
-          type="url"
-          v-model="model.properties.ResourcePack"
-        />
-        <v-text-field
-          prepend-inner-icon="mdi-package-variant"
-          label="Resource SHA1"
-          v-model="model.properties.ResourcePackSHA1"
-        />
-        <v-textarea
-          label="Generator Settings"
-          rows="1"
-          prepend-inner-icon="mdi-gantry-crane"
-          v-model="model.properties.GeneratorSettings"
-        />
-        <v-row>
-          <v-col>
-            <v-switch
-              label="Allow Nether"
-              prepend-icon="mdi-fire"
-              v-model="model.properties.AllowNether"
+      </v-container>
+      <v-expansion-panels accordion multiple flat>
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            <div>
+              <v-icon>mdi-settings-outline</v-icon>
+              Properties
+            </div>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-text-field
+              prepend-inner-icon="mdi-earth"
+              label="World Name"
+              type="text"
+              v-model="model.properties.WorldName"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="Force Gamemode"
-              prepend-icon="mdi-gamepad-square-outline"
-              v-model="model.properties.ForceGamemode"
+            <v-combobox
+              prepend-inner-icon="mdi-gamepad-square-outline"
+              label="Gamemode"
+              :items="Gamemodes"
+              v-model="model.properties.Gamemode"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="Hardcore"
-              prepend-icon="mdi-sword"
-              v-model="model.properties.Hardcore"
+            <v-combobox
+              prepend-inner-icon="mdi-one-up"
+              label="Difficulty"
+              :items="Difficulty"
+              v-model="model.properties.Difficulty"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="PVP"
-              prepend-icon="mdi-sword-cross"
-              v-model="model.properties.PVP"
+            <v-text-field
+              prepend-inner-icon="mdi-server-network"
+              label="Max Players"
+              type="number"
+              v-model="model.properties.MaxPlayers"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="Spawn NPC"
-              prepend-icon="mdi-account-group"
-              v-model="model.properties.SpawnNPC"
+            <v-text-field
+              prepend-inner-icon="mdi-matrix"
+              label="Level Seed"
+              type="number"
+              v-model="model.properties.LevelSeed"
             />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-switch
-              label="Spawn Animals"
-              prepend-icon="mdi-sheep"
-              v-model="model.properties.SpawnAnimals"
+            <v-slider
+              label="View Distance"
+              prepend-icon="mdi-eye-outline"
+              min="3"
+              max="30"
+              step="1"
+              :tick-labels="ViewDistanceLables"
+              v-model="model.properties.ViewDistance"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="Spawn Monsters"
-              prepend-icon="mdi-minecraft"
-              v-model="model.properties.SpawnMonsters"
+            <v-text-field
+              prepend-inner-icon="mdi-message-text-outline"
+              label="Message of the Day"
+              type="text"
+              v-model="model.properties.MOTD"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="Generate Structures"
-              prepend-icon="mdi-home-city-outline"
-              v-model="model.properties.GenerateStructures"
+            <v-combobox
+              prepend-inner-icon="mdi-format-list-bulleted-type"
+              label="Level Type"
+              :items="LevelTypes"
+              v-model="model.properties.LevelType"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="Enable Command Block"
-              prepend-icon="mdi-console"
-              v-model="model.properties.EnableCommandBlock"
+            <v-text-field
+              prepend-inner-icon="mdi-ruler"
+              label="Max Build Height"
+              type="number"
+              :rules="BuildHeightRules"
+              v-model="model.properties.MaxBuildHeight"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="Allow Flight"
-              prepend-icon="mdi-bee"
-              v-model="model.properties.AllowFlight"
+            <v-text-field
+              prepend-inner-icon="mdi-ruler-square"
+              label="Max World Size"
+              type="number"
+              v-model="model.properties.MaxWorldSize"
             />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-card-title>
-            <v-icon>mdi-database-settings</v-icon>
-            Advanced Settings
-          </v-card-title>
-        </v-row>
-        <v-combobox
-          prepend-inner-icon="mdi-gamepad-square-outline"
-          label="Operator Permission Level"
-          :items="PermissionLevels"
-          v-model="model.properties.PermissionLevel"
-        />
-        <v-combobox
-          prepend-inner-icon="mdi-code-braces"
-          label="Function Permission Level"
-          :items="PermissionLevels"
-          value="4"
-        />
-        <v-text-field
-          type="number"
-          label="Network Compression Threshold"
-          prepend-inner-icon="mdi-download-network-outline"
-          value="256"
-        />
-        <v-text-field
-          type="number"
-          label="Max Tick Time"
-          prepend-inner-icon="mdi-clock"
-          value="60000"
-        />
-        <v-row>
-          <v-col>
-            <v-switch
-              label="Prevent Proxy Connections"
-              prepend-icon="mdi-transit-connection"
-              v-model="model.properties.PreventProxyConnections"
+            <v-text-field
+              prepend-inner-icon="mdi-radius-outline"
+              label="Spawn Protection"
+              type="number"
+              v-model="model.properties.SpawnProtection"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="Whitelist"
-              prepend-icon="mdi-account"
-              v-model="model.properties.Whitelist"
+            <v-text-field
+              prepend-inner-icon="mdi-timer"
+              label="Player Idle Time"
+              type="number"
+              v-model="model.properties.PlayerIdleTime"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="Enforce Whitelist"
-              prepend-icon="mdi-shield-account"
-              v-model="model.properties.EnforceWhitelist"
+            <v-text-field
+              prepend-inner-icon="mdi-package-variant-closed"
+              label="Resource Pack"
+              type="url"
+              v-model="model.properties.ResourcePack"
             />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-switch
-              label="Online Mode"
-              prepend-icon="mdi-security-network"
-              v-model="model.properties.OnlineMode"
+            <v-text-field
+              prepend-inner-icon="mdi-package-variant"
+              label="Resource SHA1"
+              v-model="model.properties.ResourcePackSHA1"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="Snooper Enabled"
-              prepend-icon="mdi-leak"
-              v-model="model.properties.SnooperEnabled"
+            <v-textarea
+              label="Generator Settings"
+              rows="1"
+              prepend-inner-icon="mdi-gantry-crane"
+              v-model="model.properties.GeneratorSettings"
             />
-          </v-col>
-          <v-col>
-            <v-switch
-              label="Use Native Transport"
-              prepend-icon="mdi-lan"
-              v-model="model.properties.UseNativeTransport"
+            <v-row>
+              <v-col>
+                <v-switch
+                  label="Allow Nether"
+                  prepend-icon="mdi-fire"
+                  v-model="model.properties.AllowNether"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="Force Gamemode"
+                  prepend-icon="mdi-gamepad-square-outline"
+                  v-model="model.properties.ForceGamemode"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="Hardcore"
+                  prepend-icon="mdi-sword"
+                  v-model="model.properties.Hardcore"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="PVP"
+                  prepend-icon="mdi-sword-cross"
+                  v-model="model.properties.PVP"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="Spawn NPC"
+                  prepend-icon="mdi-account-group"
+                  v-model="model.properties.SpawnNPC"
+                />
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-switch
+                  label="Spawn Animals"
+                  prepend-icon="mdi-sheep"
+                  v-model="model.properties.SpawnAnimals"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="Spawn Monsters"
+                  prepend-icon="mdi-minecraft"
+                  v-model="model.properties.SpawnMonsters"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="Generate Structures"
+                  prepend-icon="mdi-home-city-outline"
+                  v-model="model.properties.GenerateStructures"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="Enable Command Block"
+                  prepend-icon="mdi-console"
+                  v-model="model.properties.EnableCommandBlock"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="Allow Flight"
+                  prepend-icon="mdi-bee"
+                  v-model="model.properties.AllowFlight"
+                />
+              </v-col>
+            </v-row>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            <div>
+              <v-icon>mdi-database-settings</v-icon>
+              Advanced Settings
+            </div>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-combobox
+              prepend-inner-icon="mdi-gamepad-square-outline"
+              label="Operator Permission Level"
+              :items="PermissionLevels"
+              v-model="model.properties.PermissionLevel"
             />
-          </v-col>
-        </v-row>
-        <v-switch
-          label="Enable Query"
-          prepend-icon="mdi-access-point"
-          v-model="model.properties.EnableQuery"
-        />
-        <v-text-field
-          v-if="model.properties.EnableQuery"
-          prepend-inner-icon="mdi-console-network"
-          label="Query Port"
-          type="number"
-          :rules="PortRules"
-          v-model="model.properties.QueryPort"
-        />
-        <v-switch
-          label="RCON Enabled"
-          prepend-icon="mdi-access-point-network"
-          v-model="model.properties.RCONEnabled"
-        />
-        <v-text-field
-          v-if="model.properties.RCONEnabled"
-          prepend-inner-icon="mdi-console-network"
-          label="RCON Port"
-          type="number"
-          :rules="PortRules"
-          v-model="model.properties.RCONPort"
-        />
-        <v-text-field
-          v-if="model.properties.RCONEnabled"
-          prepend-inner-icon="mdi-textbox-password"
-          :append-icon="PasswordVisible ? 'mdi-eye' : 'mdi-eye-off'"
-          @click:append="PasswordVisible = !PasswordVisible"
-          :type="PasswordVisible ? 'text' : 'password'"
-          label="RCON Password"
-          v-model="model.properties.RCONPassword"
-        />
-        <v-row>
-          <v-card-title>JVM Settings</v-card-title>
-        </v-row>
-        <MemoryInput
-          type="Xmx"
-          @memory-input="OnXmxMemoryInput"
-          @unit-input="OnXmxUnitInput"
-        />
-        <MemoryInput
-          type="Xms"
-          @memory-input="OnXmsMemoryInput"
-          @unit-input="OnXmsUnitInput"
-        />
+            <v-combobox
+              prepend-inner-icon="mdi-code-braces"
+              label="Function Permission Level"
+              :items="PermissionLevels"
+              value="4"
+            />
+            <v-text-field
+              type="number"
+              label="Network Compression Threshold"
+              prepend-inner-icon="mdi-download-network-outline"
+              value="256"
+            />
+            <v-text-field
+              type="number"
+              label="Max Tick Time"
+              prepend-inner-icon="mdi-clock"
+              value="60000"
+            />
+            <v-row>
+              <v-col>
+                <v-switch
+                  label="Prevent Proxy Connections"
+                  prepend-icon="mdi-transit-connection"
+                  v-model="model.properties.PreventProxyConnections"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="Whitelist"
+                  prepend-icon="mdi-account"
+                  v-model="model.properties.Whitelist"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="Enforce Whitelist"
+                  prepend-icon="mdi-shield-account"
+                  v-model="model.properties.EnforceWhitelist"
+                />
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-switch
+                  label="Online Mode"
+                  prepend-icon="mdi-security-network"
+                  v-model="model.properties.OnlineMode"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="Snooper Enabled"
+                  prepend-icon="mdi-leak"
+                  v-model="model.properties.SnooperEnabled"
+                />
+              </v-col>
+              <v-col>
+                <v-switch
+                  label="Use Native Transport"
+                  prepend-icon="mdi-lan"
+                  v-model="model.properties.UseNativeTransport"
+                />
+              </v-col>
+            </v-row>
+            <v-switch
+              label="Enable Query"
+              prepend-icon="mdi-access-point"
+              v-model="model.properties.EnableQuery"
+            />
+            <v-text-field
+              v-if="model.properties.EnableQuery"
+              prepend-inner-icon="mdi-console-network"
+              label="Query Port"
+              type="number"
+              :rules="PortRules"
+              v-model="model.properties.QueryPort"
+            />
+            <v-switch
+              label="RCON Enabled"
+              prepend-icon="mdi-access-point-network"
+              v-model="model.properties.RCONEnabled"
+            />
+            <v-text-field
+              v-if="model.properties.RCONEnabled"
+              prepend-inner-icon="mdi-console-network"
+              label="RCON Port"
+              type="number"
+              :rules="PortRules"
+              v-model="model.properties.RCONPort"
+            />
+            <v-text-field
+              v-if="model.properties.RCONEnabled"
+              prepend-inner-icon="mdi-textbox-password"
+              :append-icon="PasswordVisible ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="PasswordVisible = !PasswordVisible"
+              :type="PasswordVisible ? 'text' : 'password'"
+              label="RCON Password"
+              v-model="model.properties.RCONPassword"
+            />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            <div>
+              <v-icon>mdi-router-wireless-settings</v-icon>
+              JVM Settings
+            </div>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <MemoryInput
+              type="Xmx"
+              @memory-input="OnXmxMemoryInput"
+              @unit-input="OnXmxUnitInput"
+            />
+            <MemoryInput
+              type="Xms"
+              @memory-input="OnXmsMemoryInput"
+              @unit-input="OnXmsUnitInput"
+            />
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+      <v-container>
         <v-card-actions>
           <v-btn
             :disabled="!valid"
@@ -363,17 +382,20 @@ import MemoryInput from "../components/MemoryInput";
 // import axios from "axios";
 
 const findServerURL = async GameVersionID => {
-  let versionUrl = GameVersions.versions.find(item => item.id == GameVersionID).url;
-  versionUrl = `http://localhost:8010/proxy${versionUrl.split(`https://launchermeta.mojang.com`)[1]}`;
+  let versionUrl = GameVersions.versions.find(item => item.id == GameVersionID)
+    .url;
+  versionUrl = `http://localhost:8010/proxy${
+    versionUrl.split(`https://launchermeta.mojang.com`)[1]
+  }`;
   return await fetch(versionUrl, {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Headers": "*"
     }
   })
-  .then(data => data.json())
-  .then(data => data.downloads.server.url);
-}
+    .then(data => data.json())
+    .then(data => data.downloads.server.url);
+};
 
 export default {
   components: {
@@ -398,7 +420,8 @@ export default {
             nogui: "true"
           },
           Properties: {
-            "op-permission-level": '"' + this.model.properties.PermissionLevel + '"',
+            "op-permission-level":
+              '"' + this.model.properties.PermissionLevel + '"',
             "allow-nether": '"' + this.model.properties.AllowNether + '"',
             "level-name": this.model.properties.WorldName,
             "enable-query": '"' + this.model.properties.EnableQuery + '"',
@@ -407,7 +430,8 @@ export default {
             "server-port": this.model.main.ServerPort,
             "enable-rcon": '"' + this.model.properties.RCONEnabled + '"',
             "force-gamemode": '"' + this.model.properties.ForceGamemode + '"',
-            "max-build-height": '"' + this.model.properties.MaxBuildHeight + '"',
+            "max-build-height":
+              '"' + this.model.properties.MaxBuildHeight + '"',
             "max-world-size": '"' + this.model.properties.MaxWorldSize + '"',
             "spawn-npcs": '"' + this.model.properties.SpawnNPC + '"',
             "white-list": '"' + this.model.properties.Whitelist + '"',
@@ -417,14 +441,18 @@ export default {
             "online-mode": '"' + this.model.properties.OnlineMode + '"',
             pvp: '"' + this.model.properties.PVP + '"',
             difficulty: this.model.properties.Difficulty.toLowerCase(),
-            "enable-command-block": '"' + this.model.properties.EnableCommandBlock + '"',
+            "enable-command-block":
+              '"' + this.model.properties.EnableCommandBlock + '"',
             gamemode: this.model.properties.Gamemode.toLowerCase(),
-            "player-idle-timeout": '"' + this.model.properties.PlayerIdleTime + '"',
+            "player-idle-timeout":
+              '"' + this.model.properties.PlayerIdleTime + '"',
             "max-players": '"' + this.model.properties.MaxPlayers + '"',
             "spawn-monsters": '"' + this.model.properties.SpawnMonsters + '"',
-            "generate-structures": '"' + this.model.properties.GenerateStructures + '"',
+            "generate-structures":
+              '"' + this.model.properties.GenerateStructures + '"',
             "view-distance": '"' + this.model.properties.ViewDistance + '"',
-            "spawn-protection": '"' + this.model.properties.SpawnProtection + '"',
+            "spawn-protection":
+              '"' + this.model.properties.SpawnProtection + '"',
             motd: this.model.properties.MOTD
           }
         };
@@ -483,7 +511,7 @@ export default {
           XmsUnit: "M"
         },
         properties: {
-          WorldName: "",
+          WorldName: "World",
           Gamemode: "Survival",
           Difficulty: "Easy",
           MaxPlayers: 20,
